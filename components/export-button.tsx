@@ -16,6 +16,7 @@ export function ExportButton({ data, template }: ExportButtonProps) {
   const prepareElementForExport = (element: HTMLElement): HTMLElement => {
     const cloned = element.cloneNode(true) as HTMLElement
 
+    cloned.removeAttribute("id")
     cloned.style.position = "absolute"
     cloned.style.left = "-9999px"
     cloned.style.width = `${A4_WIDTH_PX}px`
@@ -25,46 +26,49 @@ export function ExportButton({ data, template }: ExportButtonProps) {
     cloned.style.overflow = "visible"
     cloned.style.padding = "60px"
     cloned.style.boxSizing = "border-box"
+    cloned.style.backgroundColor = "#ffffff"
 
     const styleOverride = document.createElement("style")
     styleOverride.textContent = `
+      :root, * {
+        --background: 255 255 255 !important;
+        --foreground: 15 23 42 !important;
+        --primary: 37 99 235 !important;
+        --primary-foreground: 255 255 255 !important;
+        --secondary: 241 245 249 !important;
+        --secondary-foreground: 15 23 42 !important;
+        --muted: 241 245 249 !important;
+        --muted-foreground: 100 116 139 !important;
+        --accent: 241 245 249 !important;
+        --accent-foreground: 15 23 42 !important;
+        --destructive: 239 68 68 !important;
+        --destructive-foreground: 255 255 255 !important;
+        --border: 226 232 240 !important;
+        --input: 226 232 240 !important;
+        --ring: 37 99 235 !important;
+        --radius: 0.5rem !important;
+      }
       * {
-        color: #0f172a !important;
-        background-color: transparent !important;
-        border-color: #e8e8e8 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
       }
-      .bg-white, [class*="bg-white"] {
-        background-color: #ffffff !important;
+      .bg-blue-600 {
+        background-color: rgb(37, 99, 235) !important;
       }
-      .bg-blue-50, [class*="bg-blue-50"] {
-        background-color: #eff6ff !important;
+      .bg-blue-50 {
+        background-color: rgb(239, 246, 255) !important;
       }
-      .bg-gray-50, [class*="bg-gray-50"] {
-        background-color: #f9fafb !important;
+      .text-blue-600 {
+        color: rgb(37, 99, 235) !important;
       }
-      .text-blue-600, [class*="text-blue-600"] {
-        color: #2563eb !important;
+      .border-blue-600 {
+        border-color: rgb(37, 99, 235) !important;
       }
-      .text-gray-600, [class*="text-gray-600"] {
-        color: #4b5563 !important;
+      .border-blue-300 {
+        border-color: rgb(147, 197, 253) !important;
       }
-      .text-gray-700, [class*="text-gray-700"] {
-        color: #374151 !important;
-      }
-      .text-gray-800, [class*="text-gray-800"] {
-        color: #1f2937 !important;
-      }
-      .text-gray-900, [class*="text-gray-900"] {
-        color: #111827 !important;
-      }
-      .border-blue-600, [class*="border-blue-600"] {
-        border-color: #2563eb !important;
-      }
-      .border-gray-200, [class*="border-gray-200"] {
-        border-color: #e5e7eb !important;
-      }
-      .border-gray-300, [class*="border-gray-300"] {
-        border-color: #d1d5db !important;
+      .bg-blue-100 {
+        background-color: rgb(219, 234, 254) !important;
       }
     `
     cloned.insertBefore(styleOverride, cloned.firstChild)
@@ -101,13 +105,6 @@ export function ExportButton({ data, template }: ExportButtonProps) {
         height: preparedElement.scrollHeight,
         windowWidth: A4_WIDTH_PX,
         windowHeight: preparedElement.scrollHeight,
-        onclone: (clonedDoc) => {
-          const clonedElement = clonedDoc.getElementById("resume-preview")
-          if (clonedElement) {
-            clonedElement.style.color = "#0f172a"
-            clonedElement.style.backgroundColor = "#ffffff"
-          }
-        },
       })
 
       document.body.removeChild(preparedElement)
@@ -154,13 +151,6 @@ export function ExportButton({ data, template }: ExportButtonProps) {
         height: preparedElement.scrollHeight,
         windowWidth: A4_WIDTH_PX,
         windowHeight: preparedElement.scrollHeight,
-        onclone: (clonedDoc) => {
-          const clonedElement = clonedDoc.getElementById("resume-preview")
-          if (clonedElement) {
-            clonedElement.style.color = "#0f172a"
-            clonedElement.style.backgroundColor = "#ffffff"
-          }
-        },
       })
 
       document.body.removeChild(preparedElement)
@@ -194,7 +184,7 @@ export function ExportButton({ data, template }: ExportButtonProps) {
       const preparedElement = prepareElementForExport(element)
       document.body.appendChild(preparedElement)
 
-      await new Promise((resolve) => setTimeout(resolve, 300))
+      await new Promise((resolve) => setTimeout(resolve, 500))
 
       console.log("[v0] Capturing canvas with A4 dimensions:", A4_WIDTH_PX, "x", A4_HEIGHT_PX)
 
@@ -208,12 +198,8 @@ export function ExportButton({ data, template }: ExportButtonProps) {
         height: preparedElement.scrollHeight,
         windowWidth: A4_WIDTH_PX,
         windowHeight: preparedElement.scrollHeight,
-        onclone: (clonedDoc) => {
-          const clonedElement = clonedDoc.getElementById("resume-preview")
-          if (clonedElement) {
-            clonedElement.style.color = "#0f172a"
-            clonedElement.style.backgroundColor = "#ffffff"
-          }
+        ignoreElements: (element) => {
+          return false
         },
       })
 
@@ -229,13 +215,12 @@ export function ExportButton({ data, template }: ExportButtonProps) {
         format: "a4",
       })
 
-      const pdfWidth = 210 // A4 width in mm
-      const pdfHeight = 297 // A4 height in mm
+      const pdfWidth = 210
+      const pdfHeight = 297
       const imgWidth = canvas.width
       const imgHeight = canvas.height
 
-      // Calculate scaling to fit A4 width
-      const ratio = pdfWidth / (imgWidth / 3.7795275591) // Convert px to mm
+      const ratio = pdfWidth / (imgWidth / 3.7795275591)
       const scaledHeight = (imgHeight / 3.7795275591) * ratio
 
       let heightLeft = scaledHeight

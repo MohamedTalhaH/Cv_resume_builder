@@ -2,9 +2,9 @@ import type { ResumeData } from "@/types/resume"
 
 export function CreativeTemplate({ data }: { data: ResumeData }) {
   return (
-    <div className="max-w-4xl mx-auto font-sans bg-white">
+    <div className="w-full h-full mx-auto font-sans bg-white">
       {/* Header with accent */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-8 rounded-lg mb-8">
+      <div className="bg-blue-600 text-white p-8 rounded-lg mb-8">
         <h1 className="text-5xl font-bold mb-2">{data.personalInfo.fullName}</h1>
         {data.personalInfo.title && <p className="text-xl font-light mb-3 opacity-95">{data.personalInfo.title}</p>}
         <div className="flex flex-wrap gap-4 text-sm opacity-90">
@@ -146,10 +146,7 @@ export function CreativeTemplate({ data }: { data: ResumeData }) {
           </h2>
           <div className="flex flex-wrap gap-3">
             {data.skills.map((skill) => (
-              <span
-                key={skill}
-                className="px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full font-medium text-sm"
-              >
+              <span key={skill} className="px-4 py-2 bg-blue-600 text-white rounded-full font-medium text-sm">
                 {skill}
               </span>
             ))}
