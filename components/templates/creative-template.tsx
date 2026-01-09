@@ -29,7 +29,7 @@ export function CreativeTemplate({ data }: { data: ResumeData }) {
           <div className="space-y-4">
             {data.experience.map((exp) => (
               <div key={exp.id} className="pl-0">
-                <div className="flex justify-between items-baseline mb-1">
+                <div className="flex justify-between items-baseline mb-2">
                   <h3 className="font-bold text-slate-900 text-base">{exp.position}</h3>
                   <span className="text-sm text-slate-600 whitespace-nowrap ml-4">
                     {exp.startDate} - {exp.endDate}
@@ -51,11 +51,11 @@ export function CreativeTemplate({ data }: { data: ResumeData }) {
           <div className="space-y-3">
             {data.education.map((edu) => (
               <div key={edu.id} className="pl-0">
-                <div className="flex justify-between items-baseline mb-1">
+                <div className="flex justify-between items-baseline mb-2">
                   <h3 className="font-bold text-slate-900 text-base">{edu.degree}</h3>
                   <span className="text-sm text-slate-600 whitespace-nowrap ml-4">{edu.year}</span>
                 </div>
-                <p className="text-blue-600 font-semibold text-sm">{edu.school}</p>
+                <p className="text-blue-600 font-semibold text-sm mb-1">{edu.school}</p>
                 {edu.field && <p className="text-slate-700 text-sm">{edu.field}</p>}
               </div>
             ))}

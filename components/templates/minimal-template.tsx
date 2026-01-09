@@ -32,13 +32,13 @@ export function MinimalTemplate({ data }: { data: ResumeData }) {
           <div className="space-y-3">
             {data.experience.map((exp) => (
               <div key={exp.id}>
-                <div className="flex justify-between items-baseline mb-0.5">
+                <div className="flex justify-between items-baseline mb-1.5">
                   <h3 className="font-semibold text-slate-900 text-sm leading-tight">{exp.position}</h3>
                   <span className="text-xs text-slate-600 whitespace-nowrap ml-2">
                     {exp.startDate} – {exp.endDate}
                   </span>
                 </div>
-                <p className="text-slate-600 text-xs font-medium mb-1">{exp.company}</p>
+                <p className="text-slate-600 text-xs font-medium mb-1.5">{exp.company}</p>
                 <p className="text-slate-700 text-xs leading-relaxed">{exp.description}</p>
               </div>
             ))}
@@ -53,11 +53,11 @@ export function MinimalTemplate({ data }: { data: ResumeData }) {
           <div className="space-y-2">
             {data.education.map((edu) => (
               <div key={edu.id}>
-                <div className="flex justify-between items-baseline mb-0.5">
+                <div className="flex justify-between items-baseline mb-1">
                   <h3 className="font-semibold text-slate-900 text-sm leading-tight">{edu.degree}</h3>
                   <span className="text-xs text-slate-600 whitespace-nowrap ml-2">{edu.year}</span>
                 </div>
-                <p className="text-slate-600 text-xs font-medium">{edu.school}</p>
+                <p className="text-slate-600 text-xs font-medium mb-0.5">{edu.school}</p>
                 {edu.field && <p className="text-slate-700 text-xs">{edu.field}</p>}
               </div>
             ))}

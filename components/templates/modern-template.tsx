@@ -27,13 +27,13 @@ export function ModernTemplate({ data }: { data: ResumeData }) {
 
       {data.experience.length > 0 && (
         <div className="mb-5">
-          <h2 className="text-xl font-bold text-slate-900 mb-3 pb-1 border-b-2 border-blue-600 uppercase tracking-wide">
+          <h2 className="text-xl font-bold text-slate-900 mb-3 pb-2 border-b-2 border-blue-600 uppercase tracking-wide">
             Professional Experience
           </h2>
           <div className="space-y-4">
             {data.experience.map((exp) => (
               <div key={exp.id}>
-                <div className="flex justify-between items-baseline mb-1">
+                <div className="flex justify-between items-baseline mb-2">
                   <h3 className="font-bold text-slate-900 text-base">{exp.position}</h3>
                   <span className="text-sm text-slate-600 whitespace-nowrap ml-4">
                     {exp.startDate} - {exp.endDate}
@@ -49,17 +49,17 @@ export function ModernTemplate({ data }: { data: ResumeData }) {
 
       {data.education.length > 0 && (
         <div className="mb-5">
-          <h2 className="text-xl font-bold text-slate-900 mb-3 pb-1 border-b-2 border-blue-600 uppercase tracking-wide">
+          <h2 className="text-xl font-bold text-slate-900 mb-3 pb-2 border-b-2 border-blue-600 uppercase tracking-wide">
             Education
           </h2>
           <div className="space-y-3">
             {data.education.map((edu) => (
               <div key={edu.id}>
-                <div className="flex justify-between items-baseline mb-1">
+                <div className="flex justify-between items-baseline mb-2">
                   <h3 className="font-bold text-slate-900 text-base">{edu.degree}</h3>
                   <span className="text-sm text-slate-600 whitespace-nowrap ml-4">{edu.year}</span>
                 </div>
-                <p className="text-blue-600 font-semibold text-sm">{edu.school}</p>
+                <p className="text-blue-600 font-semibold text-sm mb-2">{edu.school}</p>
                 {edu.field && <p className="text-slate-700 text-sm">{edu.field}</p>}
               </div>
             ))}
@@ -69,13 +69,13 @@ export function ModernTemplate({ data }: { data: ResumeData }) {
 
       {data.projects.length > 0 && (
         <div className="mb-5">
-          <h2 className="text-xl font-bold text-slate-900 mb-3 pb-1 border-b-2 border-blue-600 uppercase tracking-wide">
+          <h2 className="text-xl font-bold text-slate-900 mb-3 pb-2 border-b-2 border-blue-600 uppercase tracking-wide">
             Projects
           </h2>
           <div className="space-y-3">
             {data.projects.map((proj) => (
               <div key={proj.id}>
-                <div className="flex justify-between items-baseline mb-1">
+                <div className="flex justify-between items-baseline mb-2">
                   <h3 className="font-bold text-slate-900 text-base">{proj.name}</h3>
                   {proj.link && (
                     <a href={proj.link} className="text-blue-600 hover:underline text-sm whitespace-nowrap ml-4">
@@ -97,7 +97,7 @@ export function ModernTemplate({ data }: { data: ResumeData }) {
 
       {data.certifications.length > 0 && (
         <div className="mb-5">
-          <h2 className="text-xl font-bold text-slate-900 mb-3 pb-1 border-b-2 border-blue-600 uppercase tracking-wide">
+          <h2 className="text-xl font-bold text-slate-900 mb-3 pb-2 border-b-2 border-blue-600 uppercase tracking-wide">
             Certifications
           </h2>
           <div className="space-y-2">
@@ -115,7 +115,7 @@ export function ModernTemplate({ data }: { data: ResumeData }) {
 
       {data.languages.length > 0 && (
         <div className="mb-5">
-          <h2 className="text-xl font-bold text-slate-900 mb-3 pb-1 border-b-2 border-blue-600 uppercase tracking-wide">
+          <h2 className="text-xl font-bold text-slate-900 mb-3 pb-2 border-b-2 border-blue-600 uppercase tracking-wide">
             Languages
           </h2>
           <div className="space-y-2">
@@ -131,7 +131,7 @@ export function ModernTemplate({ data }: { data: ResumeData }) {
 
       {data.skills.length > 0 && (
         <div>
-          <h2 className="text-xl font-bold text-slate-900 mb-3 pb-1 border-b-2 border-blue-600 uppercase tracking-wide">
+          <h2 className="text-xl font-bold text-slate-900 mb-3 pb-2 border-b-2 border-blue-600 uppercase tracking-wide">
             Skills
           </h2>
           <div className="flex flex-wrap gap-2">
